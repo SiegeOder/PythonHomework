@@ -19,7 +19,3 @@ class ExpressionParserTestCase(unittest.TestCase):
         self.assertEqual(parse_expression("e+pi+tau", constants), [e, '+', pi, '+', tau])
         self.assertEqual(parse_expression("cos(sin(tan(e)))", constants),
                          ['cos', '(', 'sin', '(', 'tan', '(', e, ')', ')', ')'])
-
-
-if __name__ == '__main__':
-    unittest.main()

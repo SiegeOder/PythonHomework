@@ -76,7 +76,3 @@ class ExpressionCalculatorTestCase(unittest.TestCase):
         self.assertEqual(convert('-70.5'), -70.5)
         self.assertEqual(convert(-54), -54)
         self.assertEqual(convert(-4.5), -4.5)
-
-
-if __name__ == '__main__':
-    unittest.main()
