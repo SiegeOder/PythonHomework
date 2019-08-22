@@ -4,12 +4,12 @@ cc = 3
 
 
 def fa():
-    pass
+    return 1
 
 
 def fb():
-    pass
+    return 2
 
 
 def fc():
-    pass
+    return 3

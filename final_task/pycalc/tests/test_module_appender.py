@@ -1,17 +1,18 @@
 import unittest
-import test_appending_1
-from test_appending_1 import ca as c_a
-from test_appending_1 import cb as c_b
-from test_appending_1 import cc as c_c
-from test_appending_1 import fa as f_a
-from test_appending_1 import fb as f_b
-from test_appending_1 import fc as f_c
-from test_appending_2 import cd as c_d
-from test_appending_2 import ce as c_e
-from test_appending_2 import cf as c_f
-from test_appending_2 import fd as f_d
-from test_appending_2 import fe as f_e
-from test_appending_2 import ff as f_f
+import pycalc.tests.test_appending_1
+import pycalc.tests.test_appending_2
+from pycalc.tests.test_appending_1 import ca
+from pycalc.tests.test_appending_1 import cb
+from pycalc.tests.test_appending_1 import cc
+from pycalc.tests.test_appending_1 import fa
+from pycalc.tests.test_appending_1 import fb
+from pycalc.tests.test_appending_1 import fc
+from pycalc.tests.test_appending_2 import cd
+from pycalc.tests.test_appending_2 import ce
+from pycalc.tests.test_appending_2 import cf
+from pycalc.tests.test_appending_2 import fd
+from pycalc.tests.test_appending_2 import fe
+from pycalc.tests.test_appending_2 import ff
 from pycalc.module_appender import (append_module,
                                     append_module_by_name,
                                     import_all_modules)
@@ -24,19 +25,23 @@ class ModuleAppenderTestCase(unittest.TestCase):
         self.functions = {}
 
     def test_append_module(self):
-        append_module(test_appending_1, self.constants, self.functions)
-        self.assertEqual(self.constants, {'ca': c_a, 'cb': c_b, 'cc': c_c})
-        self.assertEqual(self.functions, {'fa': f_a, 'fb': f_b, 'fc': f_c})
+        append_module(pycalc.tests.test_appending_1, self.constants, self.functions)
+        self.assertEqual(self.constants, {'ca': ca, 'cb': cb, 'cc': cc})
+        self.assertEqual(self.functions, {'fa': fa, 'fb': fb, 'fc': fc})
 
     def test_append_module_by_name(self):
-        append_module_by_name('test_appending_2', self.constants, self.functions)
-        self.assertEqual(self.constants, {'cd': c_d, 'ce': c_e, 'cf': c_f})
-        self.assertEqual(self.functions, {'fd': f_d, 'fe': f_e, 'ff': f_f})
+        append_module_by_name("test_appending_2", self.constants, self.functions)
+        self.assertEqual(self.constants, {'cd': cd, 'ce': ce, 'cf': cf})
+        compare_functions = {'fd': fd, 'fe': fe, 'ff': ff}
+        for func in self.functions:
+            self.assertEqual(self.functions[func](), compare_functions[func]())
 
     def test_import_all_modules(self):
         import_all_modules(['test_appending_1', 'test_appending_2'], self.constants, self.functions)
-        self.assertEqual(self.constants, {'ca': c_a, 'cb': c_b, 'cc': c_c, 'cd': c_d, 'ce': c_e, 'cf': c_f})
-        self.assertEqual(self.functions, {'fa': f_a, 'fb': f_b, 'fc': f_c, 'fd': f_d, 'fe': f_e, 'ff': f_f})
+        self.assertEqual(self.constants, {'ca': ca, 'cb': cb, 'cc': cc, 'cd': cd, 'ce': ce, 'cf': cf})
+        compare_functions = {'fa': fa, 'fb': fb, 'fc': fc, 'fd': fd, 'fe': fe, 'ff': ff}
+        for func in self.functions:
+            self.assertEqual(self.functions[func](), compare_functions[func]())
 
 
 if __name__ == '__main__':

@@ -4,12 +4,12 @@ cf = 6
 
 
 def fd():
-    pass
+    return 4
 
 
 def fe():
-    pass
+    return 5
 
 
 def ff():
-    pass
+    return 6
