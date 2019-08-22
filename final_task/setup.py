@@ -5,7 +5,7 @@ setup(name='pycalc',
       description='pure line-command calculator',
       author='Nikita Samak',
       author_email='samak.n2@example.com',
-      packages=find_packages(),
+      packages=find_packages(exclude=['pycalc.tests']),
       zip_safe=False,
       entry_points={'console_scripts': ['pycalc = pycalc.pycalc:main']}
       )
