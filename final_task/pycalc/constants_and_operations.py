@@ -1,25 +1,26 @@
 from pycalc.module_appender import (append_module_by_name)
+import operator
 
-operations = {'^': lambda arg1, arg2: arg1 ** arg2,
-              '/': lambda arg1, arg2: arg1 / arg2 if arg2 != 0 else exit("ERROR: division by zero"),
-              '//': lambda arg1, arg2: arg1 // arg2 if arg2 != 0 else exit("ERROR: division by zero"),
-              '%': lambda arg1, arg2: arg1 % arg2 if arg2 != 0 else exit("ERROR: division by zero"),
-              '*': lambda arg1, arg2: arg1 * arg2,
-              '-': lambda arg1, arg2: arg1 - arg2,
-              '+': lambda arg1, arg2: arg1 + arg2,
+OPERATIONS = {'^': operator.pow,
+              '/': operator.truediv,
+              '//': operator.floordiv,
+              '%': operator.mod,
+              '*': operator.mul,
+              '-': operator.sub,
+              '+': operator.add,
               }
 
-logical_operations = {'==': lambda arg1, arg2: arg1 == arg2,
-                      '!=': lambda arg1, arg2: arg1 != arg2,
-                      '>=': lambda arg1, arg2: arg1 >= arg2,
-                      '<=': lambda arg1, arg2: arg1 <= arg2,
-                      '>': lambda arg1, arg2: arg1 > arg2,
-                      '<': lambda arg1, arg2: arg1 < arg2,
+LOGICAL_OPERATIONS = {'==': operator.eq,
+                      '!=': operator.ne,
+                      '>=': operator.ge,
+                      '<=': operator.le,
+                      '>': operator.gt,
+                      '<': operator.lt,
                       }
 
-constants = {}
-functions = {'abs': abs,
+CONSTANTS = {}
+FUNCTIONS = {'abs': abs,
              'round': round
              }
 
-append_module_by_name("math", constants, functions)
+append_module_by_name("math", CONSTANTS, FUNCTIONS)

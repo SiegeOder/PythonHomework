@@ -1,4 +1,4 @@
-from pycalc.constants_and_operations import (functions, operations, logical_operations)
+from pycalc.constants_and_operations import (FUNCTIONS, OPERATIONS, LOGICAL_OPERATIONS)
 
 
 def has_brackets(expression: list) -> bool:
@@ -19,12 +19,12 @@ def remove_brackets(expression: list):
     expression[start_index] = result[0]
 
     if start_index > 0:  # computes if there is a function before brackets
-        if expression[start_index - 1] in functions:
+        if expression[start_index - 1] in FUNCTIONS:
             try:
-                expression[start_index] = functions[expression[start_index - 1]](*result)
+                expression[start_index] = FUNCTIONS[expression[start_index - 1]](*result)
             except TypeError as e:
                 print(f"ERROR: {e}")
-                exit(5)
+                raise Exception
             del expression[start_index - 1]
 
 
@@ -41,12 +41,12 @@ def get_operation_position(expression: list, set_expression: set):
 
 
 def calculate(expression: list) -> list:
-    """ performs sequence of operations in expression """
+    """ performs sequence of OPERATIONS in expression """
     prepare_expression(expression)
     set_expression = set(expression)
     while {'^', '//', '%', '/', '*', '-', '+'} & set_expression:
         position = get_operation_position(expression, set_expression)
-        operation = operations[expression[position]]
+        operation = OPERATIONS[expression[position]]
 
         expression[position + 1] = operation(  # position+1 because delete [pos-1:pos+1]
             convert(expression[position - 1]),  # arg1
@@ -58,16 +58,16 @@ def calculate(expression: list) -> list:
 
 
 def has_logical_operation(expression: list) -> bool:
-    for logical_operation in logical_operations:
+    for logical_operation in LOGICAL_OPERATIONS:
         if logical_operation in expression:
             return True
     return False
 
 
 def calculate_logical_expression(expression: list) -> bool:
-    for logical_operation in logical_operations.keys():
+    for logical_operation in LOGICAL_OPERATIONS.keys():
         if logical_operation in expression:
-            return logical_operations[logical_operation](expression[0], expression[2])
+            return LOGICAL_OPERATIONS[logical_operation](expression[0], expression[2])
 
 
 def calculate_expression(expression: list) -> list:
@@ -81,7 +81,7 @@ def calculate_expression(expression: list) -> list:
 def prepare_expression(expression: list):
     if not expression:
         print(f"ERROR: empty expression")
-        exit(6)
+        raise Exception
     if expression[0] == '-':
         expression[1] = -convert(expression[1])
         del expression[0]
@@ -108,5 +108,5 @@ def convert(value):
                 return int(value)
         except Exception as e:
             print(f"ERROR: invalid expression \"{value}\" | {e}")
-            exit(4)
+            raise Exception
     return value

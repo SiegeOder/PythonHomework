@@ -1,7 +1,7 @@
 import unittest
 from math import *
 from pycalc.expression_parser import parse_expression
-from pycalc.constants_and_operations import constants
+from pycalc.constants_and_operations import CONSTANTS
 from pycalc.expression_calculator import (has_brackets,
                                           remove_brackets,
                                           calculate_expression,
@@ -36,24 +36,24 @@ class ExpressionCalculatorTestCase(unittest.TestCase):
         self.assertEqual(test_list4, ['-', '7', '+', '(', '-', 5, '*', '4', ')', '*', '-', '1'])
 
     def test_calculate_expression(self):
-        self.assertEqual(calculate_expression(parse_expression("1", constants)), '1')
-        self.assertEqual(calculate_expression(parse_expression("-1", constants)), -1)
-        self.assertEqual(calculate_expression(parse_expression("1+1", constants)), 2)
-        self.assertEqual(calculate_expression(parse_expression("1-1", constants)), 0)
-        self.assertEqual(calculate_expression(parse_expression("2*2", constants)), 4)
-        self.assertEqual(calculate_expression(parse_expression("3/2", constants)), 1.5)
-        self.assertEqual(calculate_expression(parse_expression("7//3", constants)), 2)
-        self.assertEqual(calculate_expression(parse_expression("7%3", constants)), 1)
-        self.assertEqual(calculate_expression(parse_expression("5^3", constants)), 125)
-        self.assertEqual(calculate_expression(parse_expression("2^3^4", constants)), 2 ** 3 ** 4)
-        self.assertEqual(calculate_expression(parse_expression("5^3", constants)), 125)
-        self.assertEqual(calculate_expression(parse_expression("5^6/7//8%9*10", constants)), 5 ** 6 / 7 // 8 % 9 * 10)
-        self.assertEqual(calculate_expression(parse_expression("(1)", constants)), 1)
-        self.assertEqual(calculate_expression(parse_expression("(-1)", constants)), -1)
-        self.assertEqual(calculate_expression(parse_expression("-(-1)", constants)), 1)
-        self.assertEqual(calculate_expression(parse_expression("-(-(1))", constants)), 1)
-        self.assertEqual(calculate_expression(parse_expression("-(-(-1))", constants)), -1)
-        self.assertEqual(calculate_expression(parse_expression("-(-(-(1)))", constants)), -1)
+        self.assertEqual(calculate_expression(parse_expression("1", CONSTANTS)), '1')
+        self.assertEqual(calculate_expression(parse_expression("-1", CONSTANTS)), -1)
+        self.assertEqual(calculate_expression(parse_expression("1+1", CONSTANTS)), 2)
+        self.assertEqual(calculate_expression(parse_expression("1-1", CONSTANTS)), 0)
+        self.assertEqual(calculate_expression(parse_expression("2*2", CONSTANTS)), 4)
+        self.assertEqual(calculate_expression(parse_expression("3/2", CONSTANTS)), 1.5)
+        self.assertEqual(calculate_expression(parse_expression("7//3", CONSTANTS)), 2)
+        self.assertEqual(calculate_expression(parse_expression("7%3", CONSTANTS)), 1)
+        self.assertEqual(calculate_expression(parse_expression("5^3", CONSTANTS)), 125)
+        self.assertEqual(calculate_expression(parse_expression("2^3^4", CONSTANTS)), 2 ** 3 ** 4)
+        self.assertEqual(calculate_expression(parse_expression("5^3", CONSTANTS)), 125)
+        self.assertEqual(calculate_expression(parse_expression("5^6/7//8%9*10", CONSTANTS)), 5 ** 6 / 7 // 8 % 9 * 10)
+        self.assertEqual(calculate_expression(parse_expression("(1)", CONSTANTS)), 1)
+        self.assertEqual(calculate_expression(parse_expression("(-1)", CONSTANTS)), -1)
+        self.assertEqual(calculate_expression(parse_expression("-(-1)", CONSTANTS)), 1)
+        self.assertEqual(calculate_expression(parse_expression("-(-(1))", CONSTANTS)), 1)
+        self.assertEqual(calculate_expression(parse_expression("-(-(-1))", CONSTANTS)), -1)
+        self.assertEqual(calculate_expression(parse_expression("-(-(-(1)))", CONSTANTS)), -1)
 
     def test_calculate_logical_expression(self):
         self.assertEqual(calculate_logical_expression([2, '>', -2]), True)

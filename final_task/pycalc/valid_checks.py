@@ -5,20 +5,16 @@ from re import (search)
 def check_expression(expression: str) -> str:
     if expression.count('(') != expression.count(')'):
         print("ERROR: unbalanced brackets")
-        exit(1)
+        raise Exception
     if len(expression) == 0:
-        print("ERROR: empty expression")
-        exit(2)
-
-    if search(r'^[-/*+<=>]+$',
-              expression) or search(r'[!=<>*/]+\s+[!=<>*/]',
-                                    expression) or search(r'\d+\s+\d',
-                                                          expression) or search(r'^[<!=>*/]',
-                                                                                expression) or search(r'[<!=>*/\+-]$',
-                                                                                                      expression):
+        print('ERROR: empty expression')
+        raise Exception
+    if search(r'^[-/*+<=>]+$', expression) \
+            or search(r'[!=<>*/]+\s+[!=<>*/]', expression) \
+            or search(r'\d+\s+\d', expression) or search(r'^[<!=>*/]', expression) \
+            or search(r'[<!=>*/\+-]$', expression):
         print(f"ERROR: invalid expression \"{expression}\"")
-        exit(3)
-
+        raise Exception
     expression = expression.replace(' ', '')
     while '+-' in expression or '-+' in expression or '--' in expression or '++' in expression:
         expression = expression.replace('+-', '-').replace('-+', '-').replace('--', '+').replace('++', '')
