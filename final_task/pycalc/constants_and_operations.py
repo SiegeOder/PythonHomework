@@ -1,5 +1,6 @@
-from pycalc.module_appender import (append_module_by_name)
 import operator
+
+from pycalc.module_appender import (append_module_by_name)
 
 OPERATIONS = {'^': operator.pow,
               '/': operator.truediv,

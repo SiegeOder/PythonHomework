@@ -11,10 +11,9 @@ def append_module(module, constants: dict, functions: dict):
 def append_module_by_name(module_name: str, constants: dict, functions: dict):
     try:
         module = __import__(module_name)
+        append_module(module, constants, functions)
     except Exception as e:
-        print(f"ERROR: {e} | MODULE IMPORTING FAILED")
-        raise Exception
-    append_module(module, constants, functions)
+        raise Exception(f"{e} | MODULE IMPORTING FAILED")
 
 
 def import_all_modules(modules: list, constants: dict, functions: dict):

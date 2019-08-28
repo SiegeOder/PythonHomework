@@ -2,6 +2,7 @@ import unittest
 import math
 import cmath
 import time
+
 from pycalc.module_appender import (append_module,
                                     append_module_by_name,
                                     import_all_modules)

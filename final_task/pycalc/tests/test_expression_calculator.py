@@ -1,4 +1,5 @@
 import unittest
+
 from math import *
 from pycalc.expression_parser import parse_expression
 from pycalc.constants_and_operations import CONSTANTS

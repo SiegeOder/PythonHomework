@@ -1,12 +1,13 @@
+from argparse import ArgumentParser
+
 from pycalc.constants_and_operations import (CONSTANTS, FUNCTIONS)
-from pycalc.expression_calculator import (calculate_expression)
-from pycalc.expression_parser import (parse_expression)
-from pycalc.module_appender import (import_all_modules)
+from pycalc.expression_calculator import calculate_expression
+from pycalc.expression_parser import parse_expression
+from pycalc.module_appender import import_all_modules
 from pycalc.valid_checks import (check_expression, check_result)
-from argparse import (ArgumentParser)
 
 
-def parse_arguments():
+def parse_arguments() -> str:
     argument_parser = ArgumentParser(description='Pure-python command-line calculator.',
                                      usage='%(prog)s [-h] EXPRESSION [-m MODULE [MODULE ...]]',
                                      prog='pycalc')
@@ -20,6 +21,9 @@ def parse_arguments():
 
 
 def main():
-    expression = check_expression(parse_arguments())
-    expression = parse_expression(expression, CONSTANTS)
-    print(check_result(calculate_expression(expression)))
+    try:
+        expression = check_expression(parse_arguments())
+        expression = parse_expression(expression, CONSTANTS)
+        print(check_result(calculate_expression(expression)))
+    except Exception as e:
+        print(f"ERROR: {e}")

@@ -1,5 +1,6 @@
 import unittest
-from pycalc.expression_parser import (parse_expression)
+
+from pycalc.expression_parser import parse_expression
 from pycalc.constants_and_operations import CONSTANTS
 from math import (pi, e, tau)
 

@@ -102,15 +102,5 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-.idea/misc.xml
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/modules.xml
-.idea/PythonHomework.iml
-.idea/vcs.xml
-.idea/workspace.xml
-final_task/.idea/final_task.iml
-final_task/.idea/inspectionProfiles/profiles_settings.xml
-final_task/.idea/misc.xml
-final_task/.idea/modules.xml
-final_task/.idea/vcs.xml
-final_task/.idea/workspace.xml
+.idea/
+final_task/.idea
